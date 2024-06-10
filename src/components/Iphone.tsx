@@ -11,8 +11,8 @@ import PhoneInputWithCountrySelect, {
 } from "react-phone-number-input";
 import { type E164Number } from "libphonenumber-js/core";
 export default function Iphone() {
-  const [phone, setPhone] = React.useState<E164Number>();
-  const [checkNumber, setCheckNumber] = React.useState<E164Number>();
+  const [phone, setPhone] = React.useState<E164Number | string>();
+  const [checkNumber, setCheckNumber] = React.useState<E164Number | string>();
   const { toast } = useToast();
 
   const { isLoading: isOtpLoading, mutate: send } =
