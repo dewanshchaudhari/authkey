@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "url": "https://authkey.pro/api/wo/otp",
+  "httpVersion": "HTTP/1.1",
+  "headers": [
+    {
+      "name": "Accept",
+      "value": "application/json"
+    },
+    {
+      "name": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "postData": {
+    "mimeType": "application/json",
+    "text": "{\"key\":\"authkey_................\",\"countryCode\":\"91\",\"phone\":\"9999999999\",\"fallback\":false}"
+  }
+}
