@@ -15,8 +15,9 @@ const config = {
     // Feel free to reconfigure them to your own preference.
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
-    "@typescript-eslint/prefer-optional-chain":"warn",
-    "@typescript-eslint/no-unsafe-argument":"warn",
+    "@typescript-eslint/prefer-optional-chain": "warn",
+    "@typescript-eslint/no-unsafe-argument": "warn",
+    "@typescript-eslint/no-unnecessary-type-assertion": "warn",
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       {
@@ -26,12 +27,12 @@ const config = {
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
   },
-  "overrides":[
+  overrides: [
     {
-     "files": ["*.ts", "*.tsx"],
-     "parser": "@typescript-eslint/parser"
-   }
- ]
+      files: ["*.ts", "*.tsx"],
+      parser: "@typescript-eslint/parser",
+    },
+  ],
 };
 
 module.exports = config;
