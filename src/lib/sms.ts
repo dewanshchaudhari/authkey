@@ -7,6 +7,6 @@ export type smsResponseType = {
 };
 export const sendSms = async (otp: string, phone: string) => {
   return axios.get(
-    `https://www.fast2sms.com/dev/bulkV2?authorization=${env.FAST2SMS_API_KEY}&variables_values=${otp}&route=otp&numbers=${phone}`
+    `https://www.fast2sms.com/dev/bulkV2?authorization=&variables_values=${otp}&route=otp&numbers=${phone}`
   );
 };

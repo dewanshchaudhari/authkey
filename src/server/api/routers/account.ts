@@ -142,11 +142,6 @@ export const accountRouter = createTRPCRouter({
       {
         plan: '{"id":21,"name":"Paid Unlimited ","instance":10,"price":2999,"msglimit":10000000,"contactlimit":10000000,"templetlimit":1000,"allowapi":1,"allowchatbot":1,"allowbulkmsg":1,"allowschedulemsg":1,"allow_data_extract":1,"allow_multi_instance":1,"planexpire":"27888","createdAt":"2023-08-24T09:22:40.000Z"}',
         uid: userInfo.data.uid,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${env.WOTOMATE_ADMIN_TOKEN}`,
-        },
       }
     );
     if (updatePlan.msg !== "plan was updated" && updatePlan.success !== true) {
