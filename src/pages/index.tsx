@@ -53,6 +53,11 @@ export default function Home() {
                   Docs
                 </Link>
               </Button>
+              <Button variant={"outline"}>
+                <Link href="/about" target="_blank">
+                  About Us
+                </Link>
+              </Button>
               {session ? (
                 <Button className="bg-red-600" asChild>
                   <Link href="/dashboard">Dashboard</Link>
@@ -199,8 +204,13 @@ export default function Home() {
                 </Button>
               )}
               <Button variant={"outline"} className="ml-4">
-                <Link href="https://mcro.link/authkeycontact" target="_blank">
+                <Link href="/contact" target="_blank">
                   Contact Us
+                </Link>
+              </Button>
+              <Button variant={"outline"} className="ml-4">
+                <Link href="/about" target="_blank">
+                  About Us
                 </Link>
               </Button>
             </div>
@@ -221,7 +231,7 @@ export default function Home() {
         </div>
         <div className="mt-4 bg-slate-100 p-10">
           <div className=" container flex max-w-6xl flex-row items-center justify-between">
-            <h1>© 2023 - All Rights Reserved - Authkey</h1>
+            <h1>© 2024 - All Rights Reserved - Authkey</h1>
             <div className="flex flex-row items-center justify-center gap-4">
               <Link
                 className="underline underline-offset-4 hover:text-primary"

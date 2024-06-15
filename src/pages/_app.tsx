@@ -14,13 +14,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <Layout>
-        {isMobile ? (
-          <div className="flex h-screen w-screen flex-col items-center justify-center text-center text-xl">
-            The Website is best viewed on desktop.
-          </div>
-        ) : (
-          <Component {...pageProps} />
-        )}
+        {isMobile ? <Component {...pageProps} /> : <Component {...pageProps} />}
       </Layout>
     </SessionProvider>
   );

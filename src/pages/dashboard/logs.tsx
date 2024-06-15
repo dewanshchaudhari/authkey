@@ -47,7 +47,7 @@ export default function Logs() {
             <TableHead className="w-[100px]">Country</TableHead>
             <TableHead className="w-[100px]">Code</TableHead>
             <TableHead className="w-[100px]">Number</TableHead>
-            <TableHead className="w-[100px]">Method</TableHead>
+            {/* <TableHead className="w-[100px]">Method</TableHead> */}
             <TableHead className="w-[100px]">Time</TableHead>
             <TableHead className="w-[100px]">Amount</TableHead>
             <TableHead className="w-[100px]">Result</TableHead>
@@ -61,7 +61,7 @@ export default function Logs() {
                 <TableCell>{countries[log.countryCode]}</TableCell>
                 <TableCell>+{log.countryCode}</TableCell>
                 <TableCell>{log.number}</TableCell>
-                <TableCell>{log.method}</TableCell>
+                {/* <TableCell>{log.method}</TableCell> */}
                 <TableCell>{log.time.toLocaleString()}</TableCell>
                 <TableCell>{log.amount}</TableCell>
                 <TableCell>{log.result}</TableCell>

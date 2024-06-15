@@ -51,15 +51,9 @@ export default function Pricing() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[100px]">Country</TableHead>
-                <TableHead className="w-[100px]">Code</TableHead>
-                {/* <TableHead className="w-[100px]">Offical</TableHead> */}
-                <TableHead className="w-[100px]">Unofficial</TableHead>
-                {/* <TableHead className="w-[100px]">SMS</TableHead> */}
-                <TableHead className="w-[100px]">
-                  Number Check (Credits Consumed / request)
-                </TableHead>
-                {/* <TableHead className="w-[100px]">Other</TableHead> */}
+                <TableHead className="">Country</TableHead>
+                <TableHead className="">Code</TableHead>
+                <TableHead className="">OTP Cost</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -70,9 +64,9 @@ export default function Pricing() {
                     {price.code === "-1" ? "Others" : `+${price.code}`}
                   </TableCell>
                   {/* <TableCell>{price.woo === -1 ? "N/A" : price.woo}</TableCell> */}
-                  <TableCell>{price.wmo === -1 ? "N/A" : price.wmo}</TableCell>
+                  <TableCell>{price.woo === -1 ? "N/A" : price.woo}</TableCell>
                   {/* <TableCell>{price.sms === -1 ? "N/A" : price.sms}</TableCell> */}
-                  <TableCell>{price.wmc === -1 ? "N/A" : price.wmc}</TableCell>
+                  {/* <TableCell>{price.woo === -1 ? "N/A" : price.wmc}</TableCell> */}
                   {/* <TableCell>{price.wmm === -1 ? "N/A" : price.wmm}</TableCell> */}
                 </TableRow>
               ))}
