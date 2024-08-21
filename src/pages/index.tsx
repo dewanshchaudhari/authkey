@@ -18,6 +18,7 @@ import {
 } from "@/components/FrontPageCard";
 import { FAQLeft, FAQRight } from "@/components/FAQ";
 import ApiEmbed from "@/components/ApiEmbed";
+import PriceCard from "@/components/PriceCard";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -188,6 +189,9 @@ export default function Home() {
           </h2>
           <ApiEmbed />
         </div>
+        <div className="container mt-20 max-w-6xl">
+          <PriceCard />
+        </div>
         <div className="mt-20 w-full bg-slate-100 p-8">
           <div className="container max-w-6xl">
             <h1 className="text-center text-[30px] font-bold leading-[54px] text-gray-600">
@@ -233,6 +237,12 @@ export default function Home() {
           <div className=" container flex max-w-6xl flex-row items-center justify-between">
             <h1>© 2024 - All Rights Reserved - Authkey</h1>
             <div className="flex flex-row items-center justify-center gap-4">
+              <Link
+                className="underline underline-offset-4 hover:text-primary"
+                href="/refunds-and-returns"
+              >
+                Refunds and Return
+              </Link>{" "}
               <Link
                 className="underline underline-offset-4 hover:text-primary"
                 href="/terms-and-conditions"

@@ -6,7 +6,7 @@ export default function AboutUs() {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="relative mx-auto max-w-[37.5rem] pb-24 pt-20 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-            Privacy policy
+            About Us
           </h1>
         </div>
       </div>
