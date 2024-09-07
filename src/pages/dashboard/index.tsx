@@ -7,19 +7,20 @@ export default function Dashboard() {
   const router = useRouter();
   api.user.getUserById.useQuery(undefined, {
     onSuccess: (data) => {
+      // void router.push("/dashboard/overview");
       if (!data?.stripeCustomerId) {
         console.log(data);
-        createStripeCustomer();
+        createPaddleCustomer();
       } else {
         void router.push("/dashboard/overview");
       }
     },
   });
   const {
-    mutate: createStripeCustomer,
+    mutate: createPaddleCustomer,
     isLoading: isStripeCreateLoading,
     isError: isStripeCreateError,
-  } = api.stripe.createStripeCustomer.useMutation({
+  } = api.paddle.createPaddleCustomer.useMutation({
     onSuccess: async () => {
       await utils.user.getUserById.invalidate();
     },

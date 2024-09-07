@@ -6,10 +6,13 @@ import React from "react";
 export default function Failed() {
   const router = useRouter();
   React.useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       void router.push("/dashboard/overview");
     }, 5000);
-  });
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [router]);
   return (
     <div className="h-full bg-gray-100">
       <div className="bg-white p-6  md:mx-auto">

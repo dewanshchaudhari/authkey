@@ -8,6 +8,8 @@ import { PlusCircle, Wallet } from "lucide-react";
 import { api } from "@/utils/api";
 import React from "react";
 import { useRouter } from "next/router";
+import { initializePaddle, type Paddle } from "@paddle/paddle-js";
+import { env } from "@/env.mjs";
 
 export default function Navbar({
   className,
@@ -15,6 +17,7 @@ export default function Navbar({
 }: React.HTMLAttributes<HTMLElement>) {
   const { data: session } = useSession();
   const router = useRouter();
+  const [paddle, setPaddle] = React.useState<Paddle>();
   const { data, isLoading, isError } = api.user.getUserById.useQuery();
   const { mutate, isLoading: isCheckoutLoading } =
     api.stripe.createCheckout.useMutation({
@@ -22,6 +25,31 @@ export default function Navbar({
         if (typeof data === "string") void router.push(data);
       },
     });
+  React.useEffect(() => {
+    void initializePaddle({
+      environment: "sandbox",
+      token: env.NEXT_PUBLIC_PADDLE_API_KEY,
+    }).then((paddleInstance: Paddle | undefined) => {
+      if (paddleInstance) {
+        setPaddle(paddleInstance);
+      }
+    });
+  }, []);
+  const openCheckout = () => {
+    if (data?.stripeCustomerId) {
+      paddle?.Checkout.open({
+        items: [
+          { priceId: env.NEXT_PUBLIC_PADDLE_PRODUCT_PRICE_ID, quantity: 1 },
+        ],
+        settings: {
+          successUrl: "http://localhost:3000/dashboard/billing/success",
+        },
+        customer: {
+          id: data.stripeCustomerId,
+        },
+      });
+    }
+  };
   if (!session) {
     return null;
   }
@@ -71,8 +99,8 @@ export default function Navbar({
 
             <Button
               variant="ghost"
-              onClick={() => mutate()}
-              disabled={isCheckoutLoading}
+              onClick={() => openCheckout()}
+              // disabled={isCheckoutLoading}
             >
               {/* <Link href="https://docs.wotcrm.com" target="_blank"> */}
               <PlusCircle
@@ -80,7 +108,7 @@ export default function Navbar({
                   isCheckoutLoading ? "animate-spin" : ""
                 }`}
               />
-              Add Credits <br /> (₹100 = 2500)
+              Add Credits <br /> ($1 = 400)
               {/* </Link> */}
             </Button>
           </>

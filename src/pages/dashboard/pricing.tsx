@@ -39,7 +39,7 @@ export default function Pricing() {
           tab to upgrade!
         </p>
         <div className="text-xs leading-6 text-black sm:text-sm">
-          💡 100 INR = 2500 Credits
+          💡 1 USD = 400 credits
         </div>
       </div>
       <div className="w-full rounded-lg border bg-card text-card-foreground shadow-sm">

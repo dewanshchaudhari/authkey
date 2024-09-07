@@ -28,6 +28,8 @@ export const env = createEnv({
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
     GOOGLE_CLIENT_ID: z.string().min(1),
     GOOGLE_CLIENT_SECRET: z.string().min(1),
+    PADDLE_WEBHOOK_SECRET: z.string().min(1),
+    PADDLE_API_KEY: z.string().min(1),
   },
 
   /**
@@ -37,6 +39,8 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
+    NEXT_PUBLIC_PADDLE_API_KEY: z.string().min(1),
+    NEXT_PUBLIC_PADDLE_PRODUCT_PRICE_ID: z.string().min(1),
   },
 
   /**
@@ -55,6 +59,11 @@ export const env = createEnv({
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    NEXT_PUBLIC_PADDLE_API_KEY: process.env.NEXT_PUBLIC_PADDLE_API_KEY,
+    NEXT_PUBLIC_PADDLE_PRODUCT_PRICE_ID:
+      process.env.NEXT_PUBLIC_PADDLE_PRODUCT_PRICE_ID,
+    PADDLE_WEBHOOK_SECRET: process.env.PADDLE_WEBHOOK_SECRET,
+    PADDLE_API_KEY: process.env.PADDLE_API_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.

@@ -1,23 +1,45 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { env } from "@/env.mjs";
 import { api } from "@/utils/api";
+import { initializePaddle, type Paddle } from "@paddle/paddle-js";
 import { Loader2, LogOut, PlusCircle } from "lucide-react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
 
 export default function Profile() {
-  const router = useRouter();
   const { data, isLoading, isError } = api.user.getUserById.useQuery();
+  const [paddle, setPaddle] = React.useState<Paddle>();
+  const [isCheckoutLoading, setIsCheckoutLoading] = React.useState(false);
   const [hide, setHide] = React.useState(true);
-  const { mutate, isLoading: isCheckoutLoading } =
-    api.stripe.createCheckout.useMutation({
-      onSuccess: (data) => {
-        if (typeof data === "string") void router.push(data);
-      },
+  React.useEffect(() => {
+    void initializePaddle({
+      environment: "sandbox",
+      token: env.NEXT_PUBLIC_PADDLE_API_KEY,
+    }).then((paddleInstance: Paddle | undefined) => {
+      if (paddleInstance) {
+        setPaddle(paddleInstance);
+      }
     });
+  }, []);
+  const openCheckout = () => {
+    setIsCheckoutLoading(true);
+    if (data?.stripeCustomerId) {
+      paddle?.Checkout.open({
+        items: [
+          { priceId: env.NEXT_PUBLIC_PADDLE_PRODUCT_PRICE_ID, quantity: 1 },
+        ],
+        settings: {
+          successUrl: "http://localhost:3000/dashboard/billing/success",
+        },
+        customer: {
+          id: data.stripeCustomerId,
+        },
+      });
+      setIsCheckoutLoading(false);
+    }
+  };
   if (isLoading || isError || !data) {
     return <Loader2 />;
   }
@@ -103,7 +125,7 @@ export default function Profile() {
             </p>
           </div>
           <div className="flex items-center p-6 pt-0">
-            <Button onClick={() => mutate()} disabled={isCheckoutLoading}>
+            <Button onClick={() => openCheckout()} disabled={isCheckoutLoading}>
               <PlusCircle
                 className={`mr-2 h-4 w-4 ${
                   isCheckoutLoading ? "animate-spin" : ""
@@ -118,9 +140,7 @@ export default function Profile() {
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
           <div className="flex flex-col space-y-1.5 p-6 pb-4">
             <h3 className="text-base font-semibold tracking-tight">Rate</h3>
-            <p className="text-xl text-muted-foreground">
-              100 INR = 2500 credits
-            </p>
+            <p className="text-xl text-muted-foreground">1 USD = 400 credits</p>
           </div>
         </div>
       </div>

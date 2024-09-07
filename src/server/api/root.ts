@@ -8,6 +8,7 @@ import { analyticsRouter } from "./routers/analytics";
 import { pricingRouter } from "./routers/pricing";
 import { stripeRouter } from "./routers/stripe";
 import { publicRouter } from "./routers/public";
+import { paddleRouter } from "./routers/paddle";
 
 /**
  * This is the primary router for your server.
@@ -24,6 +25,7 @@ export const appRouter = createTRPCRouter({
   pricing: pricingRouter,
   stripe: stripeRouter,
   public: publicRouter,
+  paddle: paddleRouter
 });
 
 // export type definition of API
