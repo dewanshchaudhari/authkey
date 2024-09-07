@@ -31,7 +31,7 @@ export default function Profile() {
           { priceId: env.NEXT_PUBLIC_PADDLE_PRODUCT_PRICE_ID, quantity: 1 },
         ],
         settings: {
-          successUrl: "http://localhost:3000/dashboard/billing/success",
+          successUrl: "https://authkey.pro/dashboard/billing/success",
         },
         customer: {
           id: data.stripeCustomerId,
